@@ -15,7 +15,6 @@ CakePHP v2.x
 How to use
 ----------
 1. Download the plugin and place it at `APP/Plugin/Composer`.
-   Assuming `APP` is the directory where your CakePHP app resides, it's usually `app/` from the base of CakePHP.
 
    ```bash
    cd APP/Plugin
@@ -62,6 +61,8 @@ Issues & questions
 - Issues: [Github Issues](https://github.com/uzyn/cakephp-composer/issues)  
 - Twitter: [@uzyn](http://twitter.com/uzyn)  
 - Email me: chua@uzyn.com  
+
+Looking for CakePHP development or consultation? <a href="mailto:chua@uzyn.com">Drop me a mail</a>.
 
 License
 ---------
