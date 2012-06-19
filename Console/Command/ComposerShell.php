@@ -148,7 +148,14 @@ class ComposerShell extends AppShell {
 		}
 		
 		if ($jsonSave) {
-			file_put_contents($jsonLocation, json_encode($json));
+			if (strnatcmp(phpversion(),'5.4.0') >= 0) {
+				$encoded = json_encode($json, JSON_PRETTY_PRINT);
+			}
+			else {
+				$encoded = json_encode($json);
+			}
+			
+			file_put_contents($jsonLocation, $encoded);
 		}
 	}
 }
