@@ -5,7 +5,8 @@ CakePHP Plugin for Composer
 
 This is a CakePHP plugin to use Composer conveniently with your CakePHP project.
 
-There is no need to pre-install Composer. This plugin will automatically download the latest version if Composer is not installed at your system.
+There is no need to pre-install Composer.  
+This plugin will automatically download the latest version if Composer is not installed at your system.
 
 Requirements
 ---------
@@ -31,8 +32,7 @@ How to use
 3. That's all! Composer is ready for use.
 
    `composer.json` is located at `APP/composer.json`. It is automatically created if it is not found.  
-   Packages are installed to `APP/Vendor` as per CakePHP convention.
-
+   Packages are installed to `APP/Vendor` as per CakePHP convention.  
    Invoke Composer from command line with `Console/cake composer.composer`.
 
    For example, to install [opauth/opauth](http://packagist.org/packages/opauth/opauth) using Composer's `require` command.
