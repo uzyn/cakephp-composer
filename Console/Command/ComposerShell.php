@@ -27,7 +27,8 @@ class ComposerShell extends AppShell {
 	}
 	
 	public function main() {
-		$this->out('Hello world.');;
+		$this->out("<info>Composer plugin for CakePHP</info> by U-Zyn Chua.", 2);
+		passthru("php {$this->pharDir}composer.phar ".implode(" ", $this->args));
 	}
 	
 	/**
