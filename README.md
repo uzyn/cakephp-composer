@@ -62,7 +62,8 @@ Issues & questions
 - Twitter: [@uzyn](http://twitter.com/uzyn)  
 - Email me: chua@uzyn.com  
 
-Looking for CakePHP development or consultation? <a href="mailto:chua@uzyn.com">Drop me a mail</a>.
+Looking for CakePHP solution or consultation?  
+<a href="mailto:chua@uzyn.com">Drop me a mail</a>. I do freelance consulting & development.
 
 License
 ---------
