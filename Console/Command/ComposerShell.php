@@ -2,6 +2,10 @@
 class ComposerShell extends AppShell {
 	public $pharDir;
 	
+	/**
+	 * Initialize ComposerShell
+	 * also checks if Composer is installed and offer auto installation option.
+	 */
 	public function initialize(){
 		if (empty($this->pharDir)){
 			if (Configure::read('Composer.phar_dir') !== null) $this->pharDir = Configure::read('Composer.phar_dir');
@@ -24,11 +28,16 @@ class ComposerShell extends AppShell {
 				$this->setup();
 			}
 		}
+		
+	}
+	
+	public function startup(){
+		$this->out("<info>Composer plugin for CakePHP</info> by U-Zyn Chua.", 2);
 	}
 	
 	public function main() {
-		$this->out("<info>Composer plugin for CakePHP</info> by U-Zyn Chua.", 2);
-		passthru("php {$this->pharDir}composer.phar ".implode(" ", $this->args));
+		
+		$this->out("php {$this->pharDir}composer.phar ".implode(" ", $this->args));
 	}
 	
 	/**
@@ -58,5 +67,25 @@ class ComposerShell extends AppShell {
 		}
 		
 		$this->out("<info>Composer installed and saved successfully.</info>");
+	}
+	
+	public function getOptionParser() {
+		$parser = parent::getOptionParser();
+		
+		/**
+		 * Listing options from Composer
+		 * or CakePHP's Shell will exit upon unrecognized options.
+		 */
+		$parser->addOptions(array(
+			'help' => array('short' => 'h'),
+			'quiet' => array('short' => 'q'),
+			'verbose' => array('short' => 'v'),
+			'version' => array('short' => 'V'),
+			'ansi' => array(),
+			'no-ansi' => array(),
+			'no-interaction' => array('short' => 'n')
+		));
+		
+		return $parser;
 	}
 }
