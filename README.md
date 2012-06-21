@@ -32,17 +32,17 @@ How to use
 
    `composer.json` is located at `APP/composer.json`. It is automatically created if it is not found.  
    Packages are installed to `APP/Vendor` as per CakePHP convention.  
-   Invoke Composer from command line with `Console/cake composer.composer`.
+   Invoke Composer from command line with `Console/cake composer.c`.
 
    For example, to install [opauth/opauth](http://packagist.org/packages/opauth/opauth) using Composer's `require` command.
    ```bash
    cd APP
-   Console/cake composer.composer require opauth/opauth:0.*
+   Console/cake composer.c require opauth/opauth:0.*
    ```
 
    To install packages defined at `composer.json`
    ```bash
-   Console/cake composer.composer install
+   Console/cake composer.c install
    ```
 
 4. This plugin also makes use of Composer's autoloader.  
