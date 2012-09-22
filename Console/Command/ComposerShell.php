@@ -69,7 +69,7 @@ class ComposerShell extends AppShell {
 	 * Grabs the latest composer.phar from http://getcomposer.org/composer.phar
 	 * Changeable at CakePHP configuration: Composer.phar_url
 	 */
-	private function _setup() {
+	protected function _setup() {
 		$pharURL = 'http://getcomposer.org/composer.phar';
 		if (Configure::read('Composer.phar_url') !== null) {
 			$pharURL = Configure::read('Composer.phar_url');
@@ -138,7 +138,7 @@ class ComposerShell extends AppShell {
 	 * Check if composer.phar is available
 	 * Offer to install if it isn't available
 	 */
-	protected function _checkComposerPhar(){
+	protected function _checkComposerPhar() {
 		$version = @exec("php {$this->pharDir}composer.phar --version");
 
 		if (stripos($version, 'Composer') === false || stripos($version, 'version') === false) {
@@ -147,8 +147,7 @@ class ComposerShell extends AppShell {
 
 			if ($setup !== 'y') {
 				$this->error("Terminating. You may overwrite the location of composer.phar by defining 'Composer.phar_dir' configuration.");
-			}
-			else {
+			} else {
 				$this->_setup();
 			}
 		}
@@ -159,7 +158,7 @@ class ComposerShell extends AppShell {
 	 * Checks that vendor-dir is set, defaults to APP.Vendor if it isn't.
 	 * Does not overwrite if vendor-dir has been set explicitly.
 	 */
-	protected function _checkComposerJSON(){
+	protected function _checkComposerJSON() {
 		if (file_exists('composer.json')) $jsonLocation = 'composer.json';
 		else $jsonLocation = APP.'composer.json';
 
@@ -171,7 +170,7 @@ class ComposerShell extends AppShell {
 				$this->out('<warning>Your composer.json is not valid.</warning>');
 				$create = $this->in('Overwrite the existing and create a default pre-configured composer.json?', array('y', 'n'), 'y');
 
-				if ($create == 'y'){
+				if ($create === 'y') {
 					$json = new stdClass;
 					$json->config->{'vendor-dir'} = 'Vendor';
 					$jsonSave = true;
@@ -182,8 +181,7 @@ class ComposerShell extends AppShell {
 				$json->config->{'vendor-dir'} = 'Vendor';
 				$jsonSave = true;
 			}
-		}
-		else{
+		} else {
 			$json = new stdClass;
 			$json->config->{'vendor-dir'} = 'Vendor';
 			$jsonSave = true;
@@ -192,8 +190,7 @@ class ComposerShell extends AppShell {
 		if ($jsonSave) {
 			if (strnatcmp(phpversion(),'5.4.0') >= 0) {
 				$encoded = json_encode($json, JSON_PRETTY_PRINT);
-			}
-			else {
+			} else {
 				$encoded = json_encode($json);
 			}
 
