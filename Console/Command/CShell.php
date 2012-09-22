@@ -9,7 +9,7 @@
  * @link 			http://opauth.org
  * @license			MIT License
  */
-App::import('Shell', 'Composer.Composer');
+App::uses('ComposerShell', 'Composer.Console/Command');
 
 class CShell extends ComposerShell {
 }
