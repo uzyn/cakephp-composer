@@ -54,13 +54,11 @@ class ComposerShell extends AppShell {
 	 */
 	public function reinstall() {
 		$version = @exec("php {$this->pharDir}composer.phar --version");
-		$this->out('Current Version: ' . $version);
+		$this->out('Current ' . $version);
 
 		$setup = $this->in('Would you like to update to the latest version of Composer?', array('y', 'n'), 'y');
 
-		if ($setup !== 'y') {
-			$this->error("Terminating. You may overwrite the location of composer.phar by defining 'Composer.phar_dir' configuration.");
-		} else {
+		if ($setup === 'y') {
 			$this->_setup();
 		}
 	}
