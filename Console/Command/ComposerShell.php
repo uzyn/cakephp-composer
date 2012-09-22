@@ -37,7 +37,7 @@ class ComposerShell extends AppShell {
 	 * Welcome message
 	 */
 	public function startup() {
-		$this->out("<info>Composer plugin for CakePHP</info> by U-Zyn Chua.", 2);
+		$this->out("<info>Composer plugin</info> for CakePHP", 2);
 	}
 
 	/**
