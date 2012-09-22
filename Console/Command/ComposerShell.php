@@ -122,13 +122,20 @@ class ComposerShell extends AppShell {
 	 * @return string Results
 	 */
 	protected static function _optionsToString($options) {
-		if (empty($options) || !is_array($options)) return '';
-
+		if (empty($options) || !is_array($options)) {
+			return '';
+		}
 		$results = '';
 		foreach ($options as $option => $value) {
-			if (strlen($results) > 0) $results .= ' ';
-			if (empty($value)) $results .= "--$option";
-			else $results .= "--$option=$value";
+			if (strlen($results) > 0) {
+				$results .= ' ';
+			}
+			if (empty($value)) {
+				$results .= "--$option";
+			}
+			else {
+				$results .= "--$option=$value";
+			}
 		}
 
 		return $results;
@@ -197,4 +204,5 @@ class ComposerShell extends AppShell {
 			file_put_contents($jsonLocation, $encoded);
 		}
 	}
+
 }
