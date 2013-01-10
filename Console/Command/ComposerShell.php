@@ -179,6 +179,8 @@ class ComposerShell extends AppShell {
 					$json = new stdClass;
 					$json->config->{'vendor-dir'} = 'Vendor';
 					$jsonSave = true;
+				} else {
+					$this->error("Terminating. You need to manually fix your composer.json file in order to continue.");
 				}
 			}
 
