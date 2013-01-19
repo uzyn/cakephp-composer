@@ -185,6 +185,7 @@ class ComposerShell extends AppShell {
 			}
 
 			if (empty($json->config->{'vendor-dir'})) {
+				$json->config = new stdClass;
 				$json->config->{'vendor-dir'} = 'Vendor';
 				$jsonSave = true;
 			}
