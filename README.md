@@ -5,7 +5,7 @@ CakePHP Composer Plugin
 
 This is a CakePHP plugin to use Composer conveniently with your CakePHP project.
 
-There is no need to pre-install Composer.  
+There is no need to pre-install Composer.
 This plugin will automatically download the latest version if Composer is not installed at your system.
 
 Requirements
@@ -30,8 +30,8 @@ How to use
 
 3. That's all! Composer is ready for use.
 
-   `composer.json` is located at `APP/composer.json`. It is automatically created if it is not found.  
-   Packages are installed to `APP/Vendor` as per CakePHP convention.  
+   `composer.json` is located at `APP/composer.json`. It is automatically created if it is not found.
+   Packages are installed to `APP/Vendor` as per CakePHP convention.
    Invoke Composer from command line with `Console/cake composer.c`.
 
    For example, to install [opauth/opauth](http://packagist.org/packages/opauth/opauth) using Composer's `require` command.
@@ -45,7 +45,7 @@ How to use
    Console/cake composer.c install
    ```
 
-4. This plugin also makes use of Composer's autoloader.  
+4. This plugin also makes use of Composer's autoloader.
    Start using a Composer-loaded classes right away without needing `require()`, `include()` or `App::import()`.
 
    For example, to instantiate a new Opauth object, simply instantiate Opauth from anywhere in your CakePHP application:
@@ -54,18 +54,21 @@ How to use
    <?php
    $Opauth = new Opauth();
    ```
-   
+
+#### Extra Options
+
+To run the plugin non-interactively, especially to automatically install `composer.phar` (see [#8](https://github.com/uzyn/cakephp-composer/issues/8)), you can include `--yes` or `-y` option, eg. `Console/cake composer.c install -y`.
 
 Issues & questions
 -------------------
-- Issues: [Github Issues](https://github.com/uzyn/cakephp-composer/issues)  
-- Twitter: [@uzyn](http://twitter.com/uzyn)  
-- Email me: chua@uzyn.com  
+- Issues: [Github Issues](https://github.com/uzyn/cakephp-composer/issues)
+- Twitter: [@uzyn](http://twitter.com/uzyn)
+- Email me: chua@uzyn.com
 
-Looking for CakePHP solution or consultation?  
+Looking for CakePHP solution or consultation?
 <a href="mailto:chua@uzyn.com">Drop me a mail</a>. I do freelance consulting & development.
 
 License
 ---------
-The MIT License  
+The MIT License
 Copyright © 2012-2013 U-Zyn Chua (http://uzyn.com)
