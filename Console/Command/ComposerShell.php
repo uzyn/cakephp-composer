@@ -28,9 +28,6 @@ class ComposerShell extends AppShell {
 				$this->pharDir = dirname(dirname(dirname(__FILE__))).DS.'Vendor'.DS.'Composer'.DS;
 			}
 		}
-
-		$this->_checkComposerPhar();
-		$this->_checkComposerJSON();
 	}
 
 	/**
@@ -38,6 +35,9 @@ class ComposerShell extends AppShell {
 	 */
 	public function startup() {
 		$this->out("<info>Composer plugin</info> for CakePHP", 2);
+
+		$this->_checkComposerPhar();
+		$this->_checkComposerJSON();
 	}
 
 	/**
@@ -109,7 +109,8 @@ class ComposerShell extends AppShell {
 			'no-ansi' => array(),
 			'no-interaction' => array('short' => 'n'),
 			'profile' => array(),
-			'working-dir' => array('short' => 'd')
+			'working-dir' => array('short' => 'd'),
+			'yes' => array('short' => 'y', 'help' => 'Automatic yes to prompts, allowing commands to run non-interactively. Automatically installs composer.phar if it is missing.')
 		));
 
 		return $parser;
@@ -150,12 +151,17 @@ class ComposerShell extends AppShell {
 
 		if (stripos($version, 'Composer') === false || stripos($version, 'version') === false) {
 			$this->out('<warning>Composer is not installed.</warning>');
-			$setup = $this->in('Would you like to install the latest version of Composer?', array('y', 'n'), 'y');
 
-			if ($setup !== 'y') {
-				$this->error("Terminating. You may overwrite the location of composer.phar by defining 'Composer.phar_dir' configuration.");
-			} else {
+			if (array_key_exists('yes', $this->params)) {
 				$this->_setup();
+			} else {
+				$setup = $this->in('Would you like to install the latest version of Composer?', array('y', 'n'), 'y');
+
+				if ($setup !== 'y') {
+					$this->error("Terminating. You may overwrite the location of composer.phar by defining 'Composer.phar_dir' configuration.");
+				} else {
+					$this->_setup();
+				}
 			}
 		}
 	}
