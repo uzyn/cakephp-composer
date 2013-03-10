@@ -44,7 +44,7 @@ class ComposerShell extends AppShell {
 	 * Catch-all for Composer commands
 	 */
 	public function main() {
-		$command = implode(" ", $this->args) . ' ' . self::_optionsToString($this->params);
+		$command = implode(" ", $this->args) . ' ' . $this->_optionsToString($this->params);
 		passthru("php {$this->pharDir}composer.phar " . $command);
 	}
 
@@ -101,6 +101,9 @@ class ComposerShell extends AppShell {
 		$parser = parent::getOptionParser();
 
 		$parser->addOptions(array(
+			/**
+			 * Composer options
+			 */
 			'help' => array('short' => 'h'),
 			'quiet' => array('short' => 'q'),
 			'verbose' => array('short' => 'v'),
@@ -110,7 +113,15 @@ class ComposerShell extends AppShell {
 			'no-interaction' => array('short' => 'n'),
 			'profile' => array(),
 			'working-dir' => array('short' => 'd'),
-			'yes' => array('short' => 'y', 'help' => 'Automatic yes to prompts, allowing commands to run non-interactively. Automatically installs composer.phar if it is missing.')
+
+			/**
+			 * CakePHP-Composer-only options
+			 */
+			'yes' => array(
+				'short' => 'y',
+				'help' => 'Automatic yes to prompts, allowing commands to run non-interactively. Automatically installs composer.phar if it is missing.',
+				'plugin_only' => true
+			)
 		));
 
 		return $parser;
@@ -122,20 +133,26 @@ class ComposerShell extends AppShell {
 	 * @param array $options Options array
 	 * @return string Results
 	 */
-	protected static function _optionsToString($options) {
+	protected function _optionsToString($options) {
 		if (empty($options) || !is_array($options)) {
 			return '';
 		}
+
+		$parser = self::getOptionParser();
+		$parserOptions = $parser->options();
 		$results = '';
+
 		foreach ($options as $option => $value) {
-			if (strlen($results) > 0) {
-				$results .= ' ';
-			}
-			if (empty($value)) {
-				$results .= "--$option";
-			}
-			else {
-				$results .= "--$option=$value";
+			if (!isset($parserOptions[$option]->_plugin_only) || !$parserOptions[$option]->_plugin_only) {
+				if (strlen($results) > 0) {
+					$results .= ' ';
+				}
+				if (empty($value)) {
+					$results .= "--$option";
+				}
+				else {
+					$results .= "--$option=$value";
+				}
 			}
 		}
 
