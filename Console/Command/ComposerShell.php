@@ -167,7 +167,11 @@ class ComposerShell extends AppShell {
 		$version = @exec("php {$this->pharDir}composer.phar --version");
 
 		if (stripos($version, 'Composer') === false || stripos($version, 'version') === false) {
-			$this->out('<warning>Composer is not installed.</warning>');
+			if(file_exists("{$this->pharDir}composer.phar")) {
+				$this->out('<warning>Composer is installed, but there was an error executing it.</warning>');
+			} else {
+				$this->out('<warning>Composer is not installed.</warning>');
+			}
 
 			if (array_key_exists('yes', $this->params)) {
 				$this->_setup();
