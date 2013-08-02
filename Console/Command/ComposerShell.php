@@ -238,6 +238,9 @@ class ComposerShell extends AppShell {
 		}
 	}
 
+	/**
+	 * Get Composer version
+	 */
 	protected function _getComposerVersion() {
 		return @exec(sprintf("php %s --version",
 			escapeshellarg($this->pharDir . 'composer.phar')
