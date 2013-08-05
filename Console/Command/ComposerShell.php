@@ -45,7 +45,10 @@ class ComposerShell extends AppShell {
 	 */
 	public function main() {
 		$command = implode(" ", $this->args) . ' ' . $this->_optionsToString($this->params);
-		passthru("php {$this->pharDir}composer.phar " . $command);
+		passthru(sprintf("php %s %s",
+			escapeshellarg($this->pharDir . 'composer.phar'),
+			$command
+		));
 	}
 
 	/**
@@ -53,7 +56,7 @@ class ComposerShell extends AppShell {
 	 * Offer to install updated version if available
 	 */
 	public function reinstall() {
-		$version = @exec("php {$this->pharDir}composer.phar --version");
+		$version = $this->_getComposerVersion();
 		$this->out('Current ' . $version);
 
 		$setup = $this->in('Would you like to update to the latest version of Composer?', array('y', 'n'), 'y');
@@ -164,7 +167,7 @@ class ComposerShell extends AppShell {
 	 * Offer to install if it isn't available
 	 */
 	protected function _checkComposerPhar() {
-		$version = @exec("php {$this->pharDir}composer.phar --version");
+		$version = $this->_getComposerVersion();
 
 		if (stripos($version, 'Composer') === false || stripos($version, 'version') === false) {
 			if(file_exists("{$this->pharDir}composer.phar")) {
@@ -235,4 +238,14 @@ class ComposerShell extends AppShell {
 		}
 	}
 
+	/**
+	 * Get Composer version
+	 */
+	protected function _getComposerVersion() {
+		return @exec(sprintf("php %s --version",
+			escapeshellarg($this->pharDir . 'composer.phar')
+		));
+	}
+
 }
+
