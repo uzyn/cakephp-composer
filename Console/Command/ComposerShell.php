@@ -25,7 +25,7 @@ class ComposerShell extends AppShell {
 			if (Configure::read('Composer.phar_dir') !== null) {
 				$this->pharDir = Configure::read('Composer.phar_dir');
 			} else {
-				$this->pharDir = dirname(dirname(dirname(__FILE__))).DS.'Vendor'.DS.'Composer'.DS;
+				$this->pharDir = dirname(dirname(dirname(__FILE__))) . DS . 'Vendor' . DS . 'Composer' . DS;
 			}
 		}
 	}
@@ -170,7 +170,7 @@ class ComposerShell extends AppShell {
 		$version = $this->_getComposerVersion();
 
 		if (stripos($version, 'Composer') === false || stripos($version, 'version') === false) {
-			if(file_exists("{$this->pharDir}composer.phar")) {
+			if (file_exists("{$this->pharDir}composer.phar")) {
 				$this->out('<warning>Composer is installed, but there was an error executing it.</warning>');
 			} else {
 				$this->out('<warning>Composer is not installed.</warning>');
@@ -197,7 +197,7 @@ class ComposerShell extends AppShell {
 	 */
 	protected function _checkComposerJSON() {
 		if (file_exists('composer.json')) $jsonLocation = 'composer.json';
-		else $jsonLocation = APP.'composer.json';
+		else $jsonLocation = APP . 'composer.json';
 
 		$jsonSave = false;
 		if (file_exists($jsonLocation)) {
@@ -228,7 +228,7 @@ class ComposerShell extends AppShell {
 		}
 
 		if ($jsonSave) {
-			if (strnatcmp(phpversion(),'5.4.0') >= 0) {
+			if (strnatcmp(phpversion(), '5.4.0') >= 0) {
 				$encoded = json_encode($json, JSON_PRETTY_PRINT);
 			} else {
 				$encoded = json_encode($json);
