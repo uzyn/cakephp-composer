@@ -113,6 +113,7 @@ class ComposerShell extends AppShell {
 			'version' => array('short' => 'V'),
 			'ansi' => array(),
 			'no-ansi' => array(),
+			'no-dev' => array(),
 			'no-interaction' => array('short' => 'n'),
 			'profile' => array(),
 			'working-dir' => array('short' => 'd'),
